@@ -1,1 +1,1 @@
-/login    /cart   200
+/login    /auth/google/callback   200
