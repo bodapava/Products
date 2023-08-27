@@ -1,0 +1,33 @@
+<div class="container">
+  <p>
+    <a class="btn btn-primary" routerLink="/products/new"> New </a>
+  </p>
+  <p>
+    <input
+      #search
+      type="text"
+      class="form-control"
+      (keyup)="filteredProducts(search.value)"
+    />
+  </p>
+  <!-- <table mat-table [dataSource]="filterProducts">
+    <mat-text-column name="title"></mat-text-column>
+  </table> -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let product of filterProducts">
+      <tr key="product[0]">
+        <td>{{ product[1].title }}</td>
+        <!-- <td>{{ product[0] }}</td> -->
+        <td>{{ product[1].price | currency : "USD" : true }}</td>
+        <td><a routerLink="/products/{{ product[0] }}">Edit</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

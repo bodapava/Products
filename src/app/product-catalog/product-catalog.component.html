@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="sticky-top">
+        <ul class="list-group">
+          <a
+            class="list-group-item list-group-item-action"
+            [class.active]="!category"
+            routerLink="/home"
+            >All Categories</a
+          >
+          <a
+            class="list-group-item list-group-item-action"
+            *ngFor="let catg of catalogCateg; let i = index"
+            [class.active]="category === catg[0]"
+            routerLink="/home/"
+            [queryParams]="{ category: catg[0] }"
+          >
+            {{ catg[1].name }}
+          </a>
+
+          <!-- <li class="list-group-item">A third item</li>
+      <li class="list-group-item">A fourth item</li>
+      <li class="list-group-item">And a fifth one</li> -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-8">
+      <div class="row">
+        <ng-container *ngIf="!filteredCatg">
+          <div><h1>Service Unavailable</h1></div>
+        </ng-container>
+        <ng-container *ngFor="let product of filteredCatg; let i = index">
+          <div class="col">
+            <app-product-card
+              [product]="product"
+              [shoppingcart]="cart"
+            ></app-product-card>
+          </div>
+          <!-- Force next columns to break to new line at md breakpoint and up -->
+          <div *ngIf="(i + 1) % 2 === 2" class="w-100"></div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

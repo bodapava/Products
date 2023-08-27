@@ -1,0 +1,101 @@
+<form [formGroup]="checkOutForm">
+  <div class="row">
+    <h3 style="margin-top: 1vh">Shipping</h3>
+    <div class="col-6">
+      <div class="mb-3 container">
+        <label class="form-label" for="name"> Name</label>
+        <input
+          class="form-control"
+          type="text"
+          id="name"
+          required
+          formControlName="name"
+          minLength="4"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="name.invalid && (name.dirty || name.touched)"
+        >
+          <div *ngIf="name.errors?.['required']">Name is required</div>
+          <div *ngIf="name.errors?.['minlength']">
+            The min length is 3 characters
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 container">
+        <label class="form-label"> Adress</label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Line 1"
+          required
+          formControlName="address1"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="address1.invalid && (address1.dirty || address1.touched)"
+        >
+          <div *ngIf="address1.errors?.['required']">Address is required</div>
+        </div>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Line 2"
+          style="margin-top: 4vh"
+        />
+      </div>
+      <div class="mb-3 container">
+        <label class="form-label"> City</label>
+        <input
+          class="form-control"
+          type="text"
+          required
+          formControlName="city"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="city.invalid && (city.dirty || city.touched)"
+        >
+          <div *ngIf="city.errors?.['required']">City is required</div>
+        </div>
+      </div>
+      <div class="container">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (click)="onSubmit(checkOutForm)"
+          [disabled]="!checkOutForm.valid"
+        >
+          Place Order
+        </button>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card" style="width: 100vh; margin: 10vh; padding: 2vh">
+        <div class="card-title" style="font-weight: bold">Order Summary</div>
+        <div class="mb-3 mt-3 p-1">
+          You have {{ cartitemsNumber }} items in your shopping cart
+        </div>
+        <table class="table">
+          <tbody *ngFor="let item of cartItems">
+            <tr>
+              <th scope="row"></th>
+              <td>
+                {{ item[1]["quantity"] }} X {{ item[1]["product"].title }}
+              </td>
+              <td>{{ item[1]["product"].price | currency : "USD" }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2" style="font-weight: bold">Total</td>
+              <td>{{ total | currency : "USD" }}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+  {{ checkOutForm.value | json }}
+</form>

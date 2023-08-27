@@ -1,0 +1,13 @@
+.container {
+  margin-top: 10vh;
+  margin-left: 10vh;
+  width: 60vh;
+}
+
+label {
+  font-style: italic;
+}
+
+.card {
+  margin-top: 10vh;
+}

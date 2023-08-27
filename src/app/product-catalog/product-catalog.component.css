@@ -1,0 +1,13 @@
+.card,
+.card-footer {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.container {
+  margin-top: 5vh;
+}
+
+.list-group {
+  cursor: pointer;
+}

@@ -1,0 +1,17 @@
+<ul class="list-group">
+  <a
+    class="list-group-item list-group-item-action"
+    [class.active]="!category"
+    routerLink="/home"
+    >All Categories</a
+  >
+  <a
+    class="list-group-item list-group-item-action"
+    *ngFor="let catg of catalogCateg; let i = index"
+    [class.active]="category === catg[0]"
+    routerLink="/home/"
+    [queryParams]="{ category: catg[0] }"
+  >
+    {{ catg[1].name }}
+  </a>
+</ul>
